@@ -5,6 +5,7 @@ const GRAVITY: float = 1000.0
 const THRUST: float = -350.0
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimSprite
+@onready var anima_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
 	pass
@@ -29,9 +30,9 @@ func _physics_process(delta: float) -> void:
 func fly() -> void:
 	if Input.is_action_just_pressed("fly"):
 		velocity.y = THRUST
+		anima_player.play("power")
 
 # Death logic
 func die() -> void:
 	anim_sprite.stop()
 	set_physics_process(false)
-
