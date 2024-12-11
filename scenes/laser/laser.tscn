@@ -1,9 +1,47 @@
-[gd_scene load_steps=3 format=3 uid="uid://ca33esxhwkguw"]
+[gd_scene load_steps=6 format=3 uid="uid://ca33esxhwkguw"]
 
 [ext_resource type="Texture2D" uid="uid://c3bi3kf67mef4" path="res://assets/pipes/laser2.png" id="1_a071g"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_p5ntu"]
 size = Vector2(9.5, 218)
+
+[sub_resource type="Animation" id="Animation_dnvwd"]
+resource_name = "flicker"
+length = 1.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.0117647), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_7jecf"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oxe4f"]
+_data = {
+"RESET": SubResource("Animation_7jecf"),
+"flicker": SubResource("Animation_dnvwd")
+}
 
 [node name="Laser" type="Area2D"]
 
@@ -14,3 +52,9 @@ texture = ExtResource("1_a071g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(73, -1)
 shape = SubResource("RectangleShape2D_p5ntu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oxe4f")
+}
+autoplay = "flicker"
