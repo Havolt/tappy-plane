@@ -73,7 +73,7 @@ _data = {
 "power": SubResource("Animation_r2jcf")
 }
 
-[node name="Plane" type="CharacterBody2D"]
+[node name="Plane" type="CharacterBody2D" groups=["Plane"]]
 scale = Vector2(0.75, 0.75)
 script = ExtResource("1_j1ben")
 
