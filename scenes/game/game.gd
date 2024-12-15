@@ -1,0 +1,28 @@
+extends Node2D
+
+const PIPES = preload("res://scenes/pipes/pipes.tscn")
+
+@onready var spawn_upper: Marker2D = $SpawnUpper
+@onready var spawn_lower: Marker2D = $SpawnLower
+@onready var spawn_timer: Timer = $SpawnTimer
+@onready var pipes_holder: Node2D = $PipesHolder
+
+func _ready() -> void:
+	spawn_pipes()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func spawn_pipes() -> void: 
+	print('Spawning')
+	var new_pipes: Pipes = PIPES.instantiate()
+	var yp: float = randf_range(spawn_upper.position.y, spawn_lower.position.y)
+	new_pipes.position = Vector2(spawn_lower.position.x, yp)
+	pipes_holder.add_child(new_pipes)
+
+
+func _on_spawn_timer_timeout() -> void:
+	spawn_pipes()
