@@ -9,6 +9,7 @@ const PIPES: PackedScene = preload("res://scenes/pipes/pipes.tscn")
 
 
 func _ready() -> void:
+	ScoreManager.set_score(0)
 	SignalManager.on_plane_died.connect(_on_plane_died)
 	spawn_pipes()
 
