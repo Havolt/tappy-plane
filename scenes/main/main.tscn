@@ -1,9 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw5th3rswvn8w"]
+[gd_scene load_steps=9 format=3 uid="uid://dw5th3rswvn8w"]
 
 [ext_resource type="Texture2D" uid="uid://h724c6h4ktwf" path="res://assets/background/sky.png" id="1_s47pk"]
 [ext_resource type="LabelSettings" uid="uid://x0qgn7mp0dfl" path="res://assets/LG_red_72.tres" id="2_uwv8r"]
 [ext_resource type="LabelSettings" uid="uid://bflqj6k1gjyu0" path="res://assets/LG_white_48.tres" id="3_qqsac"]
 [ext_resource type="LabelSettings" uid="uid://tryrq6kvocoi" path="res://assets/LG_red_24.tres" id="4_kxbpy"]
+[ext_resource type="AudioStream" uid="uid://b6cjychrjyh5f" path="res://assets/audio/bgm_menu.mp3" id="5_eposd"]
+
+[sub_resource type="Animation" id="Animation_poe57"]
+resource_name = "flash"
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/InstructionsLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.4, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3u086"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/InstructionsLabel:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h2u78"]
+_data = {
+"RESET": SubResource("Animation_3u086"),
+"flash": SubResource("Animation_poe57")
+}
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -70,3 +109,14 @@ text = "00000"
 label_settings = ExtResource("4_kxbpy")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h2u78")
+}
+autoplay = "flash"
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_eposd")
+autoplay = true
+bus = &"BGM"
