@@ -1,16 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://c0i3cgy6x6uir"]
+[gd_scene load_steps=5 format=3 uid="uid://c0i3cgy6x6uir"]
 
-[ext_resource type="FontFile" uid="uid://cvilx61aho8s" path="res://assets/fonts/LuckiestGuy-Regular.ttf" id="1_lwm55"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_s175o"]
-line_spacing = 1.0
-font = ExtResource("1_lwm55")
-font_size = 64
-font_color = Color(0.745098, 0.121569, 0.313726, 1)
-outline_size = 5
-outline_color = Color(1, 0.956863, 0.172549, 0.533333)
-shadow_size = 8
-shadow_color = Color(1, 1, 1, 1)
+[ext_resource type="Script" path="res://scenes/game_over_ui/game_over_ui.gd" id="1_81ptj"]
+[ext_resource type="LabelSettings" uid="uid://t8xkcelie7os" path="res://assets/LG_red_64.tres" id="2_hhdwa"]
+[ext_resource type="LabelSettings" uid="uid://bflqj6k1gjyu0" path="res://assets/LG_white_48.tres" id="3_4d03i"]
+[ext_resource type="AudioStream" uid="uid://caiyinme61dw4" path="res://assets/audio/game_over.wav" id="4_q3trh"]
 
 [node name="GameOverUi" type="Control"]
 layout_mode = 3
@@ -19,8 +12,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_81ptj")
 
-[node name="Label" type="Label" parent="."]
+[node name="GameOverLabel" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -34,6 +28,33 @@ offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
 text = "GAME OVER"
-label_settings = SubResource("LabelSettings_s175o")
+label_settings = ExtResource("2_hhdwa")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="SpaceLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -11.5
+offset_right = 46.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "PRESS SPACE"
+label_settings = ExtResource("3_4d03i")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_q3trh")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
