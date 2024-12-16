@@ -4,6 +4,9 @@ class_name Pipes
 
 const OFF_SCREEN : float = -500.0
 
+
+@onready var score_sound: AudioStreamPlayer2D = $ScoreSound
+
 func _ready() -> void:
 	SignalManager.on_plane_died.connect(on_plane_died)
 
@@ -30,3 +33,8 @@ func _on_pipe_body_entered(body: Node2D) -> void:
 		#if body.has_method("die"):
 			#body.die()
 		
+
+
+func _on_laser_body_entered(body: Node2D) -> void:
+	if body is Tappy:
+		score_sound.play()
