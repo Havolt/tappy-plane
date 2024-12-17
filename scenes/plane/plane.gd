@@ -8,6 +8,7 @@ const THRUST: float = -350.0
 
 @onready var anim_sprite: AnimatedSprite2D = $AnimSprite
 @onready var anima_player: AnimationPlayer = $AnimationPlayer
+@onready var sound: AudioStreamPlayer2D = $Sound
 
 func _ready() -> void:
 	pass
@@ -37,5 +38,6 @@ func fly() -> void:
 # Death logic
 func die() -> void:
 	anim_sprite.stop()
+	sound.stop()
 	set_physics_process(false)
 	SignalManager.on_plane_died.emit()
