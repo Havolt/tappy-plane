@@ -1,17 +1,44 @@
-[gd_scene load_steps=8 format=3 uid="uid://iromwfkfwhq2"]
+[gd_scene load_steps=12 format=3 uid="uid://iromwfkfwhq2"]
 
 [ext_resource type="Texture2D" uid="uid://58v73g14ppl7" path="res://assets/background/rocks_2.png" id="1_a1obg"]
 [ext_resource type="Script" path="res://scenes/game/game.gd" id="1_n7br1"]
 [ext_resource type="PackedScene" uid="uid://dynryw0xnbxxk" path="res://scenes/scrolling_bg/scrolling_bg.tscn" id="2_43bbc"]
+[ext_resource type="PackedScene" uid="uid://c354ao5gq6vyy" path="res://scenes/parallax_image/parallax_image.tscn" id="2_a176k"]
 [ext_resource type="PackedScene" uid="uid://0v88wvenv1qa" path="res://scenes/plane/plane.tscn" id="2_k63vp"]
 [ext_resource type="PackedScene" uid="uid://8qdpty37kn80" path="res://scenes/boundary/boundary.tscn" id="3_gw256"]
+[ext_resource type="Texture2D" uid="uid://h724c6h4ktwf" path="res://assets/background/sky.png" id="3_ytggt"]
+[ext_resource type="Texture2D" uid="uid://b4lvttemmn88d" path="res://assets/background/clouds_2.png" id="4_gllhw"]
 [ext_resource type="PackedScene" uid="uid://c0i3cgy6x6uir" path="res://scenes/game_over_ui/game_over_ui.tscn" id="5_fgfdi"]
+[ext_resource type="Texture2D" uid="uid://bp8r33o0f0egk" path="res://assets/background/rocks_1.png" id="5_rfi1s"]
 [ext_resource type="PackedScene" uid="uid://dis8rfmojylmc" path="res://scenes/hud/hud.tscn" id="6_4x2yu"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_n7br1")
 
+[node name="ParallaxBg" type="Node2D" parent="."]
+position = Vector2(0, 427)
+
+[node name="ParallaxImage" parent="ParallaxBg" instance=ExtResource("2_a176k")]
+scroll_scale = Vector2(0, 0)
+texture = ExtResource("3_ytggt")
+
+[node name="ParallaxImage2" parent="ParallaxBg" instance=ExtResource("2_a176k")]
+scroll_scale = Vector2(0, 0)
+autoscroll = Vector2(-20, 0)
+texture = ExtResource("4_gllhw")
+
+[node name="ParallaxImage3" parent="ParallaxBg" instance=ExtResource("2_a176k")]
+scroll_scale = Vector2(0, 0)
+autoscroll = Vector2(-50, 0)
+texture = ExtResource("5_rfi1s")
+
+[node name="ParallaxImage4" parent="ParallaxBg" instance=ExtResource("2_a176k")]
+scroll_scale = Vector2(0, 0)
+autoscroll = Vector2(-80, 0)
+texture = ExtResource("1_a1obg")
+
 [node name="ScrollingBg" parent="." instance=ExtResource("2_43bbc")]
+visible = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
