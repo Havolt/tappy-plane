@@ -11,7 +11,7 @@ const THRUST: float = -350.0
 @onready var sound: AudioStreamPlayer2D = $Sound
 
 func _ready() -> void:
-	pass
+	velocity = Vector2(0, THRUST)
 	
 
 
