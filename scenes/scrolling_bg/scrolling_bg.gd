@@ -11,5 +11,6 @@ func _process(delta: float) -> void:
 	scroll_offset.x -= GameManager.SCROLL_SPEED * delta
 
 func on_plane_died() -> void:
-	set_process(false)
+	# set_process(false)
+	get_tree().paused = true
 	

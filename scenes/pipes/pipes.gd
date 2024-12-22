@@ -21,7 +21,8 @@ func check_off_screen():
 		queue_free()
 
 func on_plane_died() -> void:
-	set_process(false)
+	#set_process(false)
+	pass
 
 func _on_screen_exited() -> void:
 	#queue_free()

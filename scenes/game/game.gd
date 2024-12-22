@@ -9,6 +9,7 @@ const PIPES: PackedScene = preload("res://scenes/pipes/pipes.tscn")
 
 
 func _ready() -> void:
+	get_tree().paused = false
 	ScoreManager.set_score(0)
 	SignalManager.on_plane_died.connect(_on_plane_died)
 	spawn_pipes()
@@ -37,3 +38,4 @@ func _on_spawn_timer_timeout() -> void:
 
 func _on_plane_died() -> void:
 	stop_pipes()
+	get_tree().paused = true

@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://dis8rfmojylmc" path="res://scenes/hud/hud.tscn" id="6_4x2yu"]
 
 [node name="Game" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_n7br1")
 
 [node name="ParallaxBg" type="Node2D" parent="."]
@@ -43,7 +44,6 @@ visible = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="GameOverUi" parent="CanvasLayer" instance=ExtResource("5_fgfdi")]
-process_mode = 3
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

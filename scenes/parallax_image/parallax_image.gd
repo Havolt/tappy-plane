@@ -20,6 +20,7 @@ func _process(delta: float) -> void:
 	pass
 	
 func on_plane_died() -> void:
-	var p = position;
-	autoscroll = Vector2.ZERO
-	position = p
+	#var p = position;
+	#autoscroll = Vector2.ZERO
+	#position = p
+	get_tree().paused = true
